@@ -20,6 +20,11 @@ ol {
   padding: 0;
 }
 
+li a {
+  text-decoration: none;
+  color: inherit;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

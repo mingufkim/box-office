@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import './App.css'
+import { Link } from 'react-router-dom'
 
 function App() {
   let [year, month, yesterday] = new Date(Date.now() - 86400000)
@@ -38,17 +39,22 @@ function App() {
         <ol>
           {dailyBoxOfficeList.map((movie) => (
             <li key={movie.rank}>
-              <h3>
-                {movie.rank}{' '}
-                {movie.rankInten === '0'
-                  ? ''
-                  : movie.rankInten > 0
-                  ? '⬆️'
-                  : '⬇️'}
-              </h3>
-              <h3>
-                {movie.rankOldAndNew === 'OLD' ? '' : '🆕'} {movie.movieNm}
-              </h3>
+              <Link to={`/movie/${movie.movieCd}`}>
+                <h3>
+                  {movie.rank}{' '}
+                  {movie.rankInten === '0'
+                    ? ''
+                    : movie.rankInten > 0
+                    ? '⬆️'
+                    : '⬇️'}
+                </h3>
+                <h3>
+                  {movie.rankOldAndNew === 'OLD' ? '' : '🆕'} {movie.movieNm}
+                </h3>
+                <p>개봉일: {movie.openDt}</p>
+                <p>누적관객수: {parseInt(movie.audiAcc).toLocaleString()}명</p>
+                <p>누적매출액: {parseInt(movie.salesAcc).toLocaleString()}원</p>
+              </Link>
             </li>
           ))}
         </ol>
